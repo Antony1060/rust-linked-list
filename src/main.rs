@@ -32,6 +32,7 @@ fn main() {
 
     println!("First: {:?}", ll.first());
     println!("Last: {:?}", ll.last());
+    println!("At index 1: {:?}", ll.get(1));
 
     ll.pop_back();
     ll.pop_front();
@@ -40,4 +41,5 @@ fn main() {
 
     println!("First: {:?}", ll.first());
     println!("Last: {:?}", ll.last());
+    println!("At index 1: {:?}", ll.get(1));
 }
