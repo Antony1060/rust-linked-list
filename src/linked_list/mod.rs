@@ -127,7 +127,7 @@ impl<T> LinkedList<T> {
     pub fn pop_back(&mut self) {
         let prev_value: Option<LinkedListEntry<T>>;
 
-        {
+        'tail: {
             let tail = self.tail.borrow();
 
             let Some(val) = tail.as_ref() else {
@@ -140,8 +140,8 @@ impl<T> LinkedList<T> {
 
             let Some(prev) = prev.as_ref() else {
                 self.head.replace(None);
-                self.tail.replace(None);
-                return;
+                prev_value = None;
+                break 'tail;
             };
 
             prev.next.replace(None);
@@ -154,7 +154,7 @@ impl<T> LinkedList<T> {
 
     pub fn pop_front(&mut self) {
         let next_value: Option<LinkedListEntry<T>>;
-        {
+        'head: {
             let head = self.head.borrow();
 
             let Some(val) = head.as_ref() else {
@@ -166,9 +166,9 @@ impl<T> LinkedList<T> {
             self.size -= 1;
 
             let Some(next) = next.as_ref() else {
-                self.head.replace(None);
+                next_value = None;
                 self.tail.replace(None);
-                return;
+                break 'head;
             };
 
             next.prev.replace(None);

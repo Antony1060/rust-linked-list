@@ -42,4 +42,14 @@ fn main() {
     println!("First: {:?}", ll.first());
     println!("Last: {:?}", ll.last());
     println!("At index 1: {:?}", ll.get(1));
+
+    while ll.size > 0 {
+        ll.pop_back();
+    }
+
+    print_linked_list(&ll);
+
+    println!("First: {:?}", ll.first());
+    println!("Last: {:?}", ll.last());
+    println!("At index 1: {:?}", ll.get(1));
 }
